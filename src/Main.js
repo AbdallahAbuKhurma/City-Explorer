@@ -29,7 +29,7 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <div style = {{textAlign: 'center'}}>
+      <div style = {{textAlign: 'center' ,border: 'solid 2px #000', width:'80%', marginLeft:'auto',marginRight:'auto'}}>
         <form onSubmit={this.getLocation}>
           <label for='city name'>Enter a location below to know more about it.</label>
           <br />
