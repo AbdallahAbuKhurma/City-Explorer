@@ -3,7 +3,7 @@ import React from 'react';
 class Footer extends React.Component {
   render() {
     return (
-      <p>&copy; Abdallah Abu Khurma | 2021</p>
+      <p style = {{textAlign:'center'}}>&copy; Abdallah Abu Khurma | 2021</p>
     );
   }
 }
