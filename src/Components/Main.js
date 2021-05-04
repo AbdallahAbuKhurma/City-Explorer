@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import Form from './Form';
 
 
 export class Main extends React.Component {
@@ -30,20 +30,13 @@ export class Main extends React.Component {
   render() {
     return (
       <div style = {{textAlign: 'center' ,border: 'solid 2px #000', width:'80%', marginLeft:'auto',marginRight:'auto'}}>
-        <form onSubmit={this.getLocation}>
-          <label for='city name'>Enter a location below to know more about it.</label>
-          <br />
-          <input onChange={this.updateCityForm} type='text' placeholder='Search' style={{width:'50%',margin:'auto', border: 'solid 2px #000'}} size="lg" />
-          <br />
-          <br />
-          <Button type='submit'> Explore  </Button>
-        </form>
+        <Form getLocation = {this.getLocation} updateCityForm = {this.updateCityForm}></Form>
         <br />
-        {this.state.data ? <p>
+        {this.state.data && <p>
           Welcome To {this.state.data.display_name} located at {this.state.data.lat} by {this.state.data.lon}
-        </p>:''}
+        </p>}
         <br />
-        {this.state.data ?<img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q&center=${this.state.data.lat},${this.state.data.lon}&zoom=10`} alt='' />:''}
+        {this.state.data &&<img src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q&center=${this.state.data.lat},${this.state.data.lon}&zoom=10`} alt='' />}
         <br />
       </div>
 
