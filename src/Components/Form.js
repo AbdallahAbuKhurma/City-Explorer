@@ -7,7 +7,7 @@ export class Form extends Component {
     return (
       <div>
         <form onSubmit={this.props.getLocation}>
-          <label for='city name'>Enter a location below to know more about it.</label>
+          <label htmlFor='city name'>Enter a location below to know more about it.</label>
           <br />
           <input onChange={this.props.updateCityForm} type='text' placeholder='Search' style={{ width: '50%', margin: 'auto', border: 'solid 2px #000' }} size="lg" />
           <br />

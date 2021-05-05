@@ -28,9 +28,9 @@ In this application I used multiple libraries such as ( bootstap and axios ) and
 
 ## Change Log
 
-04-05-2021 4:59pm - Application initialization.
+03-05-2021 4:59pm - Application initialization.
 
-05-05-2021 10:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
+04-05-2021 7:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
 
 ## Credit and Collaborations
 
