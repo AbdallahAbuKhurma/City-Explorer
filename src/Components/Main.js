@@ -8,30 +8,50 @@ export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: ' ',
+      searchQuery: '',
       weatherData: [],
       data: '',
       show: false
     };
   }
-  getLocation = async (event) => {
-    event.preventDefault();
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.searchQuery}&format=json`;
 
-    const weatherUrl = `${process.env.REACT_APP_SERVER}/weather`;
-    const expressRes = await axios.get(weatherUrl);
-    const request = await axios.get(url);
-
-    this.setState({
-      data: request.data[0],
-      weatherData: expressRes.data,
-      show: true
-    });
-  }
 
   updateCityForm = (event) => {
     this.setState({ searchQuery: event.target.value });
+    console.log(this.state.searchQuery);
   }
+
+  getLocation = async (event) => {
+
+    try {
+      event.preventDefault();
+      const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_IQ_KEY}&q=${this.state.searchQuery}&format=json`;
+      const request = await axios.get(url);
+      this.setState({
+        data: request.data[0],
+        show: true
+      });
+      console.log(this.state.data);
+      const weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.data.lat}&lon=${this.state.data.lon}`;
+      const expressRes = await axios.get(weatherUrl);
+
+      console.log(this.state.data.lat);
+      console.log(this.state.data.lon);
+
+      this.setState = {
+        data: request.data[0],
+        weatherData: expressRes.data,
+        show: true,
+      };
+    } catch (error) {
+      this.setState = {
+        show: false
+      };
+
+    }
+
+  }
+
 
   render() {
     return (
@@ -46,9 +66,9 @@ export class Main extends React.Component {
         <br />
         <WeatherData
           weatherInfo={this.state.weatherData}
+
         />
       </div>
-
     );
   }
 }
