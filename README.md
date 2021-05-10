@@ -32,6 +32,8 @@ In this application I used multiple libraries such as ( bootstap and axios ) and
 
 04-05-2021 7:59pm - Application now has a fully-functional express server, with a GET route for the location resource.
 
+10-05-2021 7:59pm - Application now has a fully-functional express server, with a GET Movies for the location resource.
+
 ## Credit and Collaborations
 
 [React bootstrap Form](https://react-bootstrap.github.io/components/forms/)
