@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Form from './Form';
 import WeatherData from './weatherData';
+import Movies from './Moves';
 
 
 export class Main extends React.Component {
@@ -9,12 +10,12 @@ export class Main extends React.Component {
     super(props);
     this.state = {
       searchQuery: '',
-      weatherData: [],
+      weatherData: {},
       data: '',
-      show: false
+      show: false,
+      moviesList: [],
     };
   }
-
 
   updateCityForm = (event) => {
     this.setState({ searchQuery: event.target.value });
@@ -35,6 +36,7 @@ export class Main extends React.Component {
       const weatherUrl = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.data.lat}&lon=${this.state.data.lon}`;
       const expressRes = await axios.get(weatherUrl);
 
+
       console.log(this.state.data.lat);
       console.log(this.state.data.lon);
 
@@ -51,6 +53,17 @@ export class Main extends React.Component {
     }
 
   }
+  getMoviesList = async () => {
+    const moviesApi = await axios.get(`${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.searchQuery}`);
+    console.log(moviesApi);
+
+    this.setState({
+      moviesList: moviesApi.data,
+      show: true
+    });
+
+  };
+
 
 
   render() {
@@ -66,6 +79,11 @@ export class Main extends React.Component {
         <br />
         <WeatherData
           weatherInfo={this.state.weatherData}
+
+        />
+        <br />
+        <Movies
+          moviesInfo={this.state.moviesList}
 
         />
       </div>
