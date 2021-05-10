@@ -6,7 +6,9 @@ export class WeatherData extends Component {
 
     return (
       <>
-        {this.props.weatherInfo &&
+        {console.log(this.props.weatherInfo)}
+
+        {this.props.weatherInfo.constructor !== Object &&
           <>
             {this.props.weatherInfo.map((data, index) => {
 
